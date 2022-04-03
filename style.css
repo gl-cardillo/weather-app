@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main-bar-container {
+  text-align: center;
+  min-height: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 0.5px solid gray;
+}
+
+.city-searchbar input {
+  border: 0;
+  padding: 0 5px 0 5px;
+}
+
+.city-searchbar input:focus {
+  outline: none;
+}
+
+.city-searchbar button {
+  background-color: transparent;
+  border: 0;
+  padding: 0 5px 5px 0;
+}
+
+.searchbar {
+  padding-top: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.date-time {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.main-bar-temp {
+  display: flex;
+  gap: 20px;
+  font-size: 32px;
+  align-items: center;
+}
+
+.temp {
+  min-width: 110px;
+}
+
+.temp-button {
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+  font-size: 18px;
+}
+.container-title {
+  display: none;
+}
+
+.temp-unit {
+  min-width: 10px;  
+  display: inline-block;
+}
+
+.hour-container  {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.days-container {
+  display: none;
+}
+
+.weather-container {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+}
+.button-day-hour {
+  text-align: center;
+}
+
+.day, .hour {
+  font-size: 24px;
+  background-color: white;
+  border: 0;
+  padding: 5px;
+}
+
+.active {
+ border-bottom: 1px solid black;
+}
+
+footer {
+  text-align: center;
+}
+
+@media only screen and (min-width: 720px) {
+  .main-bar-container {
+    flex-direction: row;
+  }
+
+  .main {
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+  }
+
+  .button-day-hour {
+    display: none;
+  }
+
+  .main-container {
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr 6fr ;
+  }
+
+  .container-title {
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+  }
+
+  .weather-container {
+    flex-direction: column;
+  }
+
+  .days-container, .hour-container   {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: none;
+    padding: 20px 0;
+    text-align: center;
+  }
+}

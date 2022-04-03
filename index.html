@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./sun.png" type="image/icon type">
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js" defer></script>
+  <title>Weather app</title>
+</head>
+<body>
+  <div class="main">
+    <div class="main-bar-container">
+      <div class="city-searchbar">
+        <h2 class="city"></h2>
+        <div class="searchbar">
+          <input type="text"  id="search">
+          <button class="search-button">&#128269</button>
+        </div>
+      </div>
+      <div class="date-time">
+        <p class="date"></p>
+        <p class="time"></p>
+      </div>
+      <div class="main-bar-temp">
+        <button class="temp-button">Show temp in °<span class="temp-unit"></span></button>
+        <p class="temp">5°</p>
+      </div>
+      <img class="weather"></p> 
+    </div>  
+    <div class="main-container">
+      <div class="button-day-hour">
+        <button class="hour">Hourly</button>
+        <button class="day">Daily</button>
+      </div>
+      <h3 class="container-title">Hour</h3>
+      <div class="hour-container"></div>
+      <h3 class="container-title">Days</h3>
+      <div class="days-container"></div>
+    </div>
+  </div>
+  <footer>
+    <p>Weather app from The Odin Project by Luca Cardillo</p>
+  </footer>
+</body>
+</html>
