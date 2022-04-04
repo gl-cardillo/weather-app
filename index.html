@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./sun.png" type="image/icon type">
+  <link rel="icon" href="./img/sun-icon.png" type="image/icon type">
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <script src="./script.js" defer></script>
   <title>Weather app</title>
 </head>
@@ -16,32 +19,32 @@
         <h2 class="city"></h2>
         <div class="searchbar">
           <input type="text"  id="search">
-          <button class="search-button">&#128269</button>
+          <button class="search-button"></button>
         </div>
-      </div>
+      </div>  
+      <div class="temp-container">  
+        <p class="temp"></p>
+        <button class="temp-button">Show temp in °<span class="temp-unit"></span></button>
+     </div>   
+     <img class="weather"></p>  
       <div class="date-time">
         <p class="date"></p>
         <p class="time"></p>
       </div>
-      <div class="main-bar-temp">
-        <button class="temp-button">Show temp in °<span class="temp-unit"></span></button>
-        <p class="temp">5°</p>
-      </div>
-      <img class="weather"></p> 
-    </div>  
+    </div>        
     <div class="main-container">
       <div class="button-day-hour">
         <button class="hour">Hourly</button>
         <button class="day">Daily</button>
       </div>
-      <h3 class="container-title">Hour</h3>
+      <h3 class="container-title">Hours</h3>
       <div class="hour-container"></div>
       <h3 class="container-title">Days</h3>
       <div class="days-container"></div>
-    </div>
-  </div>
+    </div>  
   <footer>
     <p>Weather app from The Odin Project by Luca Cardillo</p>
   </footer>
+  </div>
 </body>
 </html>

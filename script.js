@@ -3,11 +3,12 @@ function weather() {
   const searchButton = document.querySelector(".search-button");
 
   let searchValue = undefined;
-  let city = document.querySelector(".city");
-  let temperature = document.querySelector(".temp");
-  let weather = document.querySelector(".weather");
-  let datefield = document.querySelector(".date");
-  let timeField = document.querySelector(".time");
+  const city = document.querySelector(".city");
+  const temperature = document.querySelector(".temp");
+  const weather = document.querySelector(".weather");
+  const datefield = document.querySelector(".date");
+  const timeField = document.querySelector(".time");
+  const mainPage = document.querySelector(".main");
 
   const buttonHour = document.querySelector(".hour");
   const buttonDay = document.querySelector(".day");
@@ -30,8 +31,8 @@ function weather() {
   tempUnitButton.textContent = "F";
 
   async function fetchWeather(
-    hourOrDay,
-    mobile,
+    hourOrDay, // this is used for show only hours or days in max-width 720px
+    mobile, // mobile is used for button showing only in max-width 720px
     unit = "metric",
     search = "London"
   ) {
@@ -65,8 +66,9 @@ function weather() {
   function display(data) {
     //set name, temp, weather condition of city
     city.textContent = data.name;
-    temperature.textContent = `${data.main.temp}°${unitSymbol}`;
-    weather.src = displayIcon(data.weather[0].main);
+    temperature.textContent = `${parseInt(data.main.temp)}°${unitSymbol}`;
+    weather.src = displayIcon(data.weather[0]);
+
     //get todays date and time
     const date = new Date();
     datefield.textContent = date.toISOString().split("T")[0];
@@ -94,7 +96,7 @@ function weather() {
       const wind = document.createElement("p");
 
       time.textContent = new Date(data[i].dt * 1000);
-      icon.src = displayIcon(data[i].weather[0].main);
+      icon.src = displayIcon(data[i].weather[0]);
 
       container.appendChild(time);
 
@@ -103,7 +105,7 @@ function weather() {
 
       //for daily, show days and temp
       if (num === 7) {
-        temp.textContent = `${data[i].temp.day}°${unitSymbol}`;
+        temp.textContent = `${parseInt(data[i].temp.day)}°${unitSymbol}`;
         time.textContent = days[new Date(data[i].dt * 1000).getDay()];
         //append to hourly container if using phone
         if (mobile) {
@@ -114,7 +116,7 @@ function weather() {
       } else {
         //for hours, show the hour and increase i by 3 to show the hours every 4
         time.textContent = formatAMPM(new Date(data[i].dt * 1000).getHours());
-        temp.textContent = `${data[i].temp}°${unitSymbol}`;
+        temp.textContent = `${parseInt(data[i].temp)}°${unitSymbol}`;
         hourlyContainer.appendChild(container);
 
         i += 3;
@@ -134,17 +136,23 @@ function weather() {
   }
 
   function displayIcon(weather) {
-    if (weather === "Clouds") {
+    if (weather.main === "Clouds") {
+      if (
+        weather.description === "few clouds" ||
+        weather.description === "scattered clouds"
+      ) {
+        return "./img/few-clouds.png";
+      }
       return "./img/clouds.png";
-    } else if (weather === "Clear") {
+    } else if (weather.main === "Clear") {
       return "./img/sun.png";
-    } else if (weather === "Rain") {
+    } else if (weather.main === "Rain") {
       return "./img/rain.png";
-    } else if (weather === "Thunderstorm") {
+    } else if (weather.main === "Thunderstorm") {
       return "./img/storm.png";
-    } else if (weather === "Drizzle") {
+    } else if (weather.main === "Drizzle") {
       return "./img/mist.png";
-    } else if (weather === "Snow") {
+    } else if (weather.main === "Snow") {
       return "./img/snow.png";
     } else {
       return "./img/sad.png";

@@ -1,61 +1,81 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+html {
+  min-height: 100vh;
+}
+.main {
+  background-image: linear-gradient(rgba(255,255,255,0.3), 
+  rgba(255,255,255,0.3)), 
+  url('./img/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .main-bar-container {
   text-align: center;
-  min-height: 95px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  justify-content: space-around;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 0.5px solid gray;
+  color: black;
+  margin-bottom: 20px;
 }
 
-.city-searchbar input {
+.city-searchbar {
+  display: flex;
+  gap: 50px;
+  align-items: flex-end;
+}
+
+.searchbar {
+  display: inline-block;
+  padding-top: 10px;
+  border-bottom: 1px solid rgb(133, 133, 133);
+}
+
+.searchbar input {
+  max-width: 100px;
   border: 0;
-  padding: 0 5px 0 5px;
+  padding: 0 5px 0 10px;
+  background-color: transparent;
 }
 
 .city-searchbar input:focus {
   outline: none;
 }
 
-.city-searchbar button {
+.search-button {
+  background-image: url('./img/magnifier-b.png');
+  min-width: 15px;
+  height: 15px;
+  background-size: contain;
   background-color: transparent;
   border: 0;
-  padding: 0 5px 5px 0;
-}
-
-.searchbar {
-  padding-top: 10px;
-  border-bottom: 1px solid grey;
+  margin: 0 5px 5px 0;
 }
 
 .date-time {
   display: flex;
-  flex-direction: column;
-  gap:20px;
+  gap:150px;
   font-weight: bold;
-  font-size: 22px;
-}
-
-.main-bar-temp {
-  display: flex;
-  gap: 20px;
-  font-size: 32px;
-  align-items: center;
+  font-size: 18px;
 }
 
 .temp {
+  margin-top: 25px;
   min-width: 110px;
+  font-size: 70px;
+}
+
+.weather {
+  margin: 25px;
 }
 
 .temp-button {
-  background-color: white;
+  background-color: transparent;
   border: 0;
   cursor: pointer;
   font-size: 18px;
@@ -67,6 +87,21 @@
 .temp-unit {
   min-width: 10px;  
   display: inline-block;
+}
+
+.button-day-hour {
+  text-align: center;
+}
+
+.day, .hour {
+  font-size: 24px;
+  background-color: transparent;
+  border: 0;
+  padding: 5px;
+}
+
+.active {
+ border-bottom: 1px solid black;
 }
 
 .hour-container  {
@@ -87,33 +122,27 @@
   align-items: center;
   font-size: 25px;
 }
-.button-day-hour {
-  text-align: center;
-}
-
-.day, .hour {
-  font-size: 24px;
-  background-color: white;
-  border: 0;
-  padding: 5px;
-}
-
-.active {
- border-bottom: 1px solid black;
-}
 
 footer {
   text-align: center;
+  padding-bottom: 5px;
+}
+
+button {
+   color: inherit;  
 }
 
 @media only screen and (min-width: 720px) {
-  .main-bar-container {
-    flex-direction: row;
-  }
-
+ 
   .main {
     display: grid;
-    grid-template-rows: 1fr 6fr;
+    grid-template-rows: 1fr 4fr;
+  } 
+  
+  .main-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 
   .button-day-hour {
