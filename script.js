@@ -1,17 +1,17 @@
 function weather() {
-  const search = document.querySelector("#search");
-  const searchButton = document.querySelector(".search-button");
 
   let searchValue = undefined;
   const city = document.querySelector(".city");
-  const temperature = document.querySelector(".temp");
-  const weather = document.querySelector(".weather");
+  const error = document.querySelector(".error");
   const datefield = document.querySelector(".date");
   const timeField = document.querySelector(".time");
-  const mainPage = document.querySelector(".main");
+  const weather = document.querySelector(".weather");
+  const temperature = document.querySelector(".temp");
 
-  const buttonHour = document.querySelector(".hour");
   const buttonDay = document.querySelector(".day");
+  const search = document.querySelector("#search");
+  const buttonHour = document.querySelector(".hour");
+  const searchButton = document.querySelector(".search-button");
 
   let unit = "metric";
   let unitSymbol = "C";
@@ -36,30 +36,44 @@ function weather() {
     unit = "metric",
     search = "London"
   ) {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=939e3a82f6759a930c9874ce5e0d382c&units=${unit}`,
-      { mode: "cors" }
-    );
-    const jsonDataNow = await response.json();
-    display(jsonDataNow);
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=939e3a82f6759a930c9874ce5e0d382c&units=${unit}`,
+        { mode: "cors" }
+      );
 
-    const latitude = jsonDataNow.coord.lat;
-    const longitude = jsonDataNow.coord.lon;
+      //if city not found
+      if (!response.ok) {
+        error.textContent = `${search} not found`;
+        return;
+      }
+      error.textContent = "";
 
-    const responseHourly = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=939e3a82f6759a930c9874ce5e0d382c&units=${unit}`
-    );
-    const jsonData = await responseHourly.json();
+      const jsonDataNow = await response.json();
+      display(jsonDataNow);
 
-    //call with 25 to get the hours section
-    if (hourOrDay === "hour") {
-      displayHourAndDays(jsonData.hourly, 25);
-    } else if (hourOrDay === "day" || mobile) {
-      //call with 7 to get the days of the week section
-      displayHourAndDays(jsonData.daily, 7, mobile);
-    } else if ((hourOrDay = "both")) {
-      displayHourAndDays(jsonData.hourly, 25);
-      displayHourAndDays(jsonData.daily, 7);
+      const latitude = jsonDataNow.coord.lat;
+      const longitude = jsonDataNow.coord.lon;
+
+      const responseHourly = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=939e3a82f6759a930c9874ce5e0d382c&units=${unit}`
+      );
+
+      const jsonData = await responseHourly.json();
+
+      //call with 25 to get the hours section
+      if (hourOrDay === "hour") {
+        displayHourAndDays(jsonData.hourly, 25);
+      } else if (hourOrDay === "day" || mobile) {
+        //call with 7 to get the days of the week section
+        displayHourAndDays(jsonData.daily, 7, mobile);
+      } else if ((hourOrDay = "both")) {
+        displayHourAndDays(jsonData.hourly, 25);
+        displayHourAndDays(jsonData.daily, 7);
+      }
+    } catch (error) {
+      alert(error);
+      return null;
     }
   }
 
