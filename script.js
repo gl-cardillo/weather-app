@@ -1,3 +1,5 @@
+import { addWeek} from 'date-fns'
+
 function weather() {
 
   let searchValue = undefined;
@@ -84,7 +86,7 @@ function weather() {
     weather.src = displayIcon(data.weather[0]);
 
     //get todays date and time
-    const date = new Date();
+    const date = addWeek(new Date(),1);
     datefield.textContent = date.toISOString().split("T")[0];
     timeField.textContent = date.toISOString().substr(11, 5);
   }
